@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "UpdateResumeVisitorCounter",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:UpdateItem"
+      ],
+      "Resource": "arn:aws:dynamodb:ap-south-1:446550122658:table/ResumeVisitorCounter"
+    }
+  ]
+}

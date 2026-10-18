@@ -1,0 +1,12 @@
+{
+  "AllowOrigins": [
+    "https://d21qij5d5kmyfh.cloudfront.net"
+  ],
+  "AllowMethods": [
+    "GET"
+  ],
+  "AllowHeaders": [
+    "content-type"
+  ],
+  "MaxAge": 300
+}

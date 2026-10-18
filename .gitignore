@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+credentials
+.aws/
+
+# Generated Lambda artifacts
+backend/visitor-counter/function.zip
+backend/visitor-counter/response.json
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Generated AWS CLI responses
+cloudfront-create-response.json

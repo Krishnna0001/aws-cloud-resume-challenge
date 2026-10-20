@@ -1,6 +1,6 @@
 # AWS Cloud Resume Challenge
 
-A personal resume website hosted on AWS with a serverless visitor counter powered by AWS Lambda and Amazon DynamoDB.
+A personal resume website hosted on AWS with a serverless visitor counter and automated CI/CD deployment using GitHub Actions and OpenID Connect (OIDC).
 
 ## Project Overview
 
@@ -13,7 +13,7 @@ https://d21qij5d5kmyfh.cloudfront.net
 ## Architecture
 
 ### Resume Website
-Browser -> Amazon CloudFront -> Amazon S3
+Browser -> Amazon CloudFront (HTTPS) -> CloudFront OAC -> Private Amazon S3 Bucket
 
 ### Visitor Counter
 Browser -> Amazon API Gateway -> AWS Lambda -> Amazon DynamoDB
@@ -28,6 +28,8 @@ Browser -> Amazon API Gateway -> AWS Lambda -> Amazon DynamoDB
 - Amazon DynamoDB: Stores the visitor count.
 - Amazon CloudWatch: Collects Lambda execution logs.
 - AWS IAM: Controls access to AWS resources.
+- GitHub Actions: Automates frontend deployment.
+- OpenID Connect (OIDC): Allows GitHub Actions to assume an AWS IAM role using temporary credentials.
 
 ## Technologies
 
@@ -48,6 +50,8 @@ Browser -> Amazon API Gateway -> AWS Lambda -> Amazon DynamoDB
 - DynamoDB-backed visitor counter.
 - API CORS restricted to the website origin.
 - AWS infrastructure configured using CLI commands and JSON files.
+- Automated frontend deployment to S3 using GitHub Actions.
+- CloudFront cache invalidation after deployment.
 
 ## Project Structure
 
@@ -100,9 +104,17 @@ AWS Asia Pacific (Mumbai): `ap-south-1`
 - AWS CLI resource management.
 - Frontend JavaScript integration with a serverless backend.
 
+## Automated Deployment
+
+1. A change is pushed to the configured GitHub branch.
+2. GitHub Actions starts the deployment workflow when its configured triggers match.
+3. GitHub authenticates to AWS using OIDC.
+4. The workflow assumes the configured IAM role and obtains temporary credentials.
+5. Frontend files are synchronized to Amazon S3.
+6. A CloudFront invalidation refreshes cached website content.
+
 ## Future Improvements
 
-- Automate deployments using GitHub Actions.
 - Add automated backend tests.
 - Improve monitoring and error handling.
 - Explore infrastructure as code.

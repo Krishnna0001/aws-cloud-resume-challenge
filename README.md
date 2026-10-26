@@ -119,3 +119,22 @@ AWS Asia Pacific (Mumbai): `ap-south-1`
 - Improve monitoring and error handling.
 - Explore infrastructure as code.
 
+
+## Automated Testing
+
+The project includes Python unit tests for the Lambda visitor-counter function. Tests cover successful responses, DynamoDB updates, response headers, and error handling. DynamoDB interactions are mocked during testing.
+
+Run the tests locally:
+
+```bash
+python -m pip install -r requirements-dev.txt
+python -m unittest discover -s tests -p "test_*.py" -v
+```
+
+## CI/CD Deployment
+
+GitHub Actions runs the Lambda unit tests before deployment. After successful tests on an eligible push to `main`, GitHub Actions authenticates to AWS using OIDC, synchronizes frontend files to S3, and invalidates the CloudFront cache. Pull requests run tests without deploying.
+
+## Repository
+
+Source code: https://github.com/Krishnna0001/aws-cloud-resume-challenge
